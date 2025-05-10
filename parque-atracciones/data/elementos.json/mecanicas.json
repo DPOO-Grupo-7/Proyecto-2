@@ -1,0 +1,35 @@
+[
+  {
+    "nivelRiesgo": "ALTO",
+    "restriccionAlturaMinima": 1.4,
+    "restriccionAlturaMaxima": 2.0,
+    "restriccionPesoMinimo": 40.0,
+    "restriccionPesoMaximo": 120.0,
+    "contraindicacionesSalud": [
+      "Problemas cardiacos"
+    ],
+    "restriccionesSalud": [
+      "No objetos sueltos"
+    ],
+    "capacitacionEspecifica": "OPERACION_ATRACCION_RIESGO_ALTO",
+    "ubicacion": "Zona Adrenalina",
+    "empleadosMinimos": 3,
+    "nivelExclusividad": "ORO",
+    "empleadosAsignados": [],
+    "capacitacionesRequeridas": [
+      "PRIMEROS_AUXILIOS",
+      "CERTIFICADO_SEGURIDAD_ATRACCIONES",
+      "OPERACION_ATRACCION_RIESGO_ALTO"
+    ],
+    "alturaMinima": 0.0,
+    "alturaMaxima": 0.0,
+    "pesoMinimo": 0.0,
+    "pesoMaximo": 0.0,
+    "restriccionesMedicas": [],
+    "id": "AMEC01",
+    "nombre": "Montaña Rusa Test",
+    "cupoMaximo": 24,
+    "esDeTemporada": false,
+    "climaNoPermitido": []
+  }
+]

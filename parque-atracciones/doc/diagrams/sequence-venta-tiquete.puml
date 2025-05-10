@@ -1,0 +1,16 @@
+@startuml
+actor Usuario
+participant "ConsolaParque\n(UI)" as UI
+participant "ServicioVentaTiquetes" as Servicio
+participant "TiqueteFactory" as Factory
+participant "RepositorioTiquetes" as Repo
+
+Usuario -> UI: Solicita compra de tiquete
+UI -> Servicio: venderTiquete(datos)
+Servicio -> Factory: crearTiquete(datos)
+Factory --> Servicio: Tiquete
+Servicio -> Repo: guardarTiquete(Tiquete)
+Repo --> Servicio: confirmación
+Servicio -> UI: mostrarConfirmacion()
+UI -> Usuario: Muestra tiquete generado
+@enduml

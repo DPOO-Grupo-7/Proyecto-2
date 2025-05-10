@@ -1,0 +1,372 @@
+[
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Eb7ba1c469b264b17bd6d32ab8b11644a",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "T3f59472c886a4c7a9dc9e15c24f5bc89",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Eaa722b02167046159ead635674e44539",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "T779cbb079f2d4b5da86b7fcb8c572cb5",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Tfda562ee60654853bc8cb2eabf4e0931",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E001",
+    "nombre": "Juan Perez",
+    "email": "juan.perez@parque.com",
+    "telefono": "555-1001",
+    "username": "juanperez",
+    "password": "juanpass",
+    "cajaAsignada": 0,
+    "puntoVenta": "",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cocinero",
+    "puesto": "Cocinero",
+    "identificacion": "E002",
+    "nombre": "Ana Gomez",
+    "email": "ana.gomez@parque.com",
+    "telefono": "555-2002",
+    "username": "anagomez",
+    "password": "anapass",
+    "especialidad": "",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA",
+      "MANIPULACION_ALIMENTOS_AVANZADO",
+      "MANIPULACION_ALIMENTOS_BASICO"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E3d3702b4a2c442bd8fe239bda8a5697b",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "OperarioAtraccion",
+    "puesto": "OperarioAtraccion",
+    "identificacion": "E003",
+    "nombre": "Luis Torres",
+    "email": "luis.torres@parque.com",
+    "telefono": "555-3003",
+    "username": "luistorres",
+    "password": "luispass",
+    "certificadoSeguridad": false,
+    "atraccionesHabilitadas": [
+      "A1",
+      "A2"
+    ],
+    "capacitaciones": [
+      "CERTIFICADO_SEGURIDAD_ATRACCIONES",
+      "OPERACION_ATRACCION_RIESGO_MEDIO",
+      "PRIMEROS_AUXILIOS"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Ee6027ae4300c453180af7fce08ba34db",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Eae3ac9760fb74a6a85f07dbe0b361395",
+    "nombre": "Test Cajero",
+    "email": "test.cajero2@parque.com",
+    "telefono": "555-8888",
+    "username": "testuser",
+    "password": "testpass2",
+    "cajaAsignada": 0,
+    "puntoVenta": "",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E004",
+    "nombre": "Marta Ruiz",
+    "email": "marta.ruiz@parque.com",
+    "telefono": "555-4004",
+    "username": "martaruiz",
+    "password": "martapass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "Administrador",
+    "puesto": "Administrador",
+    "identificacion": "E005",
+    "nombre": "Carlos Admin",
+    "email": "carlos.admin@parque.com",
+    "telefono": "555-0001",
+    "username": "carlosadmin",
+    "password": "adminpass",
+    "areasResponsabilidad": [],
+    "capacitaciones": [
+      "CERTIFICADO_SEGURIDAD_ATRACCIONES",
+      "ATENCION_CLIENTE_GENERAL",
+      "PRIMEROS_AUXILIOS"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E3dda366438a445619a88a887b3a5b26d",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "123",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E6e7c31bef7b14aabbc467e103dfb22b4",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "EMPTEST01",
+    "nombre": "Test Cajero",
+    "email": "cajero@test.com",
+    "telefono": "555-1234",
+    "username": "cajeroUser",
+    "password": "cajeroPass",
+    "cajaAsignada": 3,
+    "puntoVenta": "Entrada Principal",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E999",
+    "nombre": "Test Cajero",
+    "email": "test.cajero@parque.com",
+    "telefono": "555-9999",
+    "username": "testuser",
+    "password": "testpass",
+    "cajaAsignada": 0,
+    "puntoVenta": "",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E5e638cfe5b064926b13d6b88c8fe48c5",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E2f77b1c26ffa424289ad01b20aa4a1bb",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "T53b4a0177707485ea5baf850f742a87f",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "Ef0d1ec9fe72d40fc8ada07bd7805e286",
+    "nombre": "Test Cajero",
+    "email": "test@parque.com",
+    "telefono": "555-0000",
+    "username": "testuser",
+    "password": "clave",
+    "cajaAsignada": 2,
+    "puntoVenta": "Taquilla Norte",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "12358",
+    "nombre": "Ana",
+    "email": "ana@mail.com",
+    "telefono": "555-1234",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 0,
+    "puntoVenta": "",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  }
+]

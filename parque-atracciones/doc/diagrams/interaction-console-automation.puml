@@ -1,0 +1,16 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Diagrama de Interacción para Automatización de Consola
+
+Component(java_app, "Parque Atracciones App", "Java/JVM", "Aplicación principal ejecutando vista.ConsolaParque")
+Component(test_runner, "Script de Automatización / Test Runner", "Shell/Python/Java/etc.", "Proceso externo que gestiona la ejecución y la interacción")
+System_Ext(console, "Consola", "Terminal Integrada (VS Code) / CMD / Shell")
+
+Rel(test_runner, java_app, "Escribe comandos/datos a", "System.in (Entrada Estándar)")
+Rel(java_app, test_runner, "Lee salida/resultados desde", "System.out (Salida Estándar)")
+
+Rel_Back(console, test_runner, "Ejecuta")
+Rel_Back(console, java_app, "Muestra Salida / Recibe Entrada Manual")
+
+@enduml

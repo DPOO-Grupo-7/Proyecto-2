@@ -1,0 +1,414 @@
+[
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006bb29e",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006bc715",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E00275e0e",
+    "nombre": "Ana Torres",
+    "email": "ana@parque.com",
+    "telefono": "555-1111",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0062ef45",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0063c3f2",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0067d810",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0061158b",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0067d878",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006ec4f5",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E0017593b",
+    "nombre": "Ana Torres",
+    "email": "ana@parque.com",
+    "telefono": "555-1111",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006adceb",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006cf2d9",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006aa2f4",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0065e1f6",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006e8203",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E00628c99",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0069b0bb",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006dbb04",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "Cajero",
+    "puesto": "Cajero",
+    "identificacion": "E010bfd6d",
+    "nombre": "Ana Torres",
+    "email": "ana@parque.com",
+    "telefono": "555-1111",
+    "username": "anauser",
+    "password": "pass",
+    "cajaAsignada": 1,
+    "puntoVenta": "Tienda1",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL",
+      "MANEJO_CAJA"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006643f4",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E00611cb7",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E00678d7d",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006bb534",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006c6683",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0069740b",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006e9dd6",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0062d1b3",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006df4ea",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E0064c4db",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E006d9c4b",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  },
+  {
+    "tipo": "ServicioGeneral",
+    "puesto": "ServicioGeneral",
+    "identificacion": "E00654320",
+    "nombre": "Pedro",
+    "email": "pedro@parque.com",
+    "telefono": "555-3333",
+    "username": "servgen1",
+    "password": "pass",
+    "capacitaciones": [
+      "ATENCION_CLIENTE_GENERAL"
+    ]
+  }
+]

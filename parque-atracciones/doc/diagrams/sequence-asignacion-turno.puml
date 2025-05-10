@@ -1,0 +1,22 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+actor Administrador
+participant "ConsolaParque\n(Vista)" as Vista
+participant "ServicioGestionEmpleados\n(Aplicación)" as Servicio
+participant "AsignacionTurno\n(Dominio)" as Turno
+
+== Asignación de turno a empleado ==
+Administrador -> Vista: Solicita asignar turno
+Vista -> Administrador: Solicita datos de empleado, fecha y turno
+Administrador -> Vista: Ingresa datos
+Vista -> Servicio: asignarTurno(empleado, fecha, turno)
+Servicio -> Turno: new AsignacionTurno(...)
+Turno --> Servicio: Instancia creada
+Servicio --> Vista: Confirmación
+Vista -> Administrador: Muestra confirmación
+@enduml

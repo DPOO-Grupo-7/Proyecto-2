@@ -1,0 +1,23 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+actor Usuario
+participant "ConsolaParque\n(Vista)" as Vista
+participant "ServicioVentaTiquetes\n(Aplicación)" as Servicio
+participant "Tiquete\n(Dominio)" as Tiquete
+participant "Atraccion\n(Dominio)" as Atraccion
+
+== Validación de acceso a atracción ==
+Usuario -> Vista: Presenta tiquete para acceder
+Vista -> Servicio: validarAccesoAtraccion(tiquete, atraccion)
+Servicio -> Tiquete: esValidoParaFecha(fecha)
+Tiquete --> Servicio: Resultado
+Servicio -> Atraccion: cumpleRequisitosPersonal()
+Atraccion --> Servicio: Resultado
+Servicio --> Vista: Acceso permitido/denegado
+Vista -> Usuario: Muestra resultado
+@enduml

@@ -1,0 +1,12 @@
+aplicacion
+dominio.elementoparque
+dominio.empleado
+dominio.excepciones
+dominio.tiquete
+dominio.trabajo
+dominio.usuario
+dominio.util
+infraestructura.dto
+infraestructura.mapper
+infraestructura.persistencia
+vista

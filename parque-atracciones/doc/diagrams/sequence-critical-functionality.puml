@@ -1,0 +1,26 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+actor Usuario
+participant "ConsolaParque\n(Vista)" as Vista
+participant "ServicioVentaTiquetes\n(Aplicación)" as Servicio
+participant "Tiquete\n(Dominio)" as Tiquete
+participant "TiqueteRepositoryJson\n(Persistencia)" as Repo
+
+== Venta de tiquete ==
+Usuario -> Vista: Solicita venta de tiquete
+Vista -> Usuario: Solicita datos comprador y tipo
+Usuario -> Vista: Ingresa datos
+Vista -> Servicio: venderTiqueteGeneral(comprador, categoria, precioBase)
+Servicio -> Servicio: validar datos y calcular precio final
+Servicio -> Tiquete: new TiqueteGeneral(...)
+Tiquete --> Servicio: Instancia creada
+Servicio -> Repo: guardarTiquetes(...)
+Repo --> Servicio: Confirmación guardado
+Servicio --> Vista: Retorna tiquete generado
+Vista -> Usuario: Muestra confirmación y datos del tiquete
+@enduml

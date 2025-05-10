@@ -1,0 +1,27 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+
+actor Administrador
+participant "ConsolaParque\n(Vista)" as Vista
+participant "ServicioGestionElementosParque\n(Aplicación)" as ServicioGestionEP
+participant "Atraccion\n(Dominio)" as Atraccion
+
+title Secuencia: Cambio de Estado de Atracción
+
+== Cambio de estado de una atracción ==
+Administrador -> Vista: Solicita cambiar estado de atracción
+Vista -> Administrador: Pide ID de atracción y nuevo estado
+Administrador -> Vista: Proporciona ID y nuevo estado
+Vista -> ServicioGestionEP: cambiarEstadoAtraccion(atraccionId, nuevoEstado)
+ServicioGestionEP -> Atraccion: // Busca la instancia de Atraccion por ID
+ServicioGestionEP -> Atraccion: actualizarEstado(nuevoEstado)
+Atraccion --> ServicioGestionEP: // Estado interno actualizado
+ServicioGestionEP --> Vista: Confirmación (éxito/fallo)
+Vista -> Administrador: Muestra resultado del cambio de estado
+
+@enduml

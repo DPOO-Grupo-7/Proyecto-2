@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+package infraestructura.persistencia {
+  class TiqueteRepositoryJson {
+    +guardarTiquetes(List<Tiquete>): void
+    +cargarTiquetes(): List<Tiquete>
+    +cargarTiquetes(Function<String, Atraccion>): List<Tiquete>
+  }
+}
+package infraestructura.dto {
+  class TiqueteDTO
+}
+package infraestructura.mapper {
+  class TiqueteMapper {
+    +toDTO(Tiquete): TiqueteDTO
+    +fromDTO(TiqueteDTO, Function<String, Atraccion>): Tiquete
+  }
+}
+package dominio.tiquete {
+  class Tiquete
+}
+TiqueteRepositoryJson --> TiqueteDTO : usa para persistencia
+TiqueteRepositoryJson --> TiqueteMapper : usa para conversión
+TiqueteMapper --> TiqueteDTO : conversión
+TiqueteMapper --> Tiquete : conversión
+@enduml

@@ -1,0 +1,171 @@
+[
+  {
+    "tipo": "AtraccionMecanica",
+    "id": "A1",
+    "nombre": "Montaña Rusa Extreme",
+    "ubicacion": "Zona Norte",
+    "cupoMaximo": 30,
+    "empleadosMinimos": 3,
+    "nivelExclusividad": "ORO",
+    "nivelRiesgo": "ALTO",
+    "alturaMinima": 1.2,
+    "alturaMaxima": 2.0,
+    "pesoMinimo": 30.0,
+    "pesoMaximo": 120.0,
+    "contraindicaciones": [
+      "Problemas cardiacos",
+      "Embarazo",
+      "Hipertensión"
+    ],
+    "restricciones": [
+      "Vértigo severo",
+      "Problemas de columna"
+    ],
+    "climaNoPermitido": [
+      "TORMENTA"
+    ],
+    "capacitacionRequerida": "OPERACION_ATRACCION_RIESGO_ALTO"
+  },
+  {
+    "tipo": "AtraccionMecanica",
+    "id": "A2",
+    "nombre": "Barco Pirata",
+    "ubicacion": "Zona Acuática",
+    "cupoMaximo": 40,
+    "empleadosMinimos": 2,
+    "nivelExclusividad": "FAMILIAR",
+    "nivelRiesgo": "MEDIO",
+    "alturaMinima": 1.0,
+    "alturaMaxima": 2.1,
+    "pesoMinimo": 25.0,
+    "pesoMaximo": 130.0,
+    "contraindicaciones": [
+      "Mareo severo"
+    ],
+    "restricciones": [],
+    "climaNoPermitido": [
+      "TORMENTA",
+      "LLUVIA"
+    ],
+    "capacitacionRequerida": "OPERACION_ATRACCION_RIESGO_MEDIO"
+  },
+  {
+    "tipo": "AtraccionMecanica",
+    "id": "A3",
+    "nombre": "Torre de Caída",
+    "ubicacion": "Zona Central",
+    "cupoMaximo": 20,
+    "empleadosMinimos": 2,
+    "nivelExclusividad": "DIAMANTE",
+    "nivelRiesgo": "ALTO",
+    "alturaMinima": 1.4,
+    "alturaMaxima": 2.1,
+    "pesoMinimo": 35.0,
+    "pesoMaximo": 110.0,
+    "contraindicaciones": [
+      "Problemas cardiacos",
+      "Hipertensión",
+      "Embarazo"
+    ],
+    "restricciones": [
+      "Vértigo",
+      "Problemas de espalda"
+    ],
+    "climaNoPermitido": [
+      "TORMENTA",
+      "VIENTO_FUERTE"
+    ],
+    "capacitacionRequerida": "OPERACION_ATRACCION_RIESGO_ALTO"
+  },
+  {
+    "tipo": "AtraccionCultural",
+    "id": "C1",
+    "nombre": "Teatro de Marionetas",
+    "ubicacion": "Zona Infantil",
+    "cupoMaximo": 50,
+    "empleadosMinimos": 2,
+    "edadMinima": 3,
+    "nivelExclusividad": "FAMILIAR",
+    "climaNoPermitido": []
+  },
+  {
+    "tipo": "AtraccionCultural",
+    "id": "C2",
+    "nombre": "Castillo del Terror",
+    "ubicacion": "Zona Oscura",
+    "cupoMaximo": 25,
+    "empleadosMinimos": 4,
+    "edadMinima": 12,
+    "nivelExclusividad": "ORO",
+    "climaNoPermitido": []
+  },
+  {
+    "tipo": "AtraccionCultural",
+    "id": "C3",
+    "nombre": "Experiencia VR Espacial",
+    "ubicacion": "Zona Futurista",
+    "cupoMaximo": 15,
+    "empleadosMinimos": 3,
+    "edadMinima": 8,
+    "nivelExclusividad": "DIAMANTE",
+    "climaNoPermitido": []
+  },
+  {
+    "tipo": "Espectaculo",
+    "id": "E1",
+    "nombre": "Show de Magia",
+    "ubicacion": "Auditorio Principal",
+    "cupoMaximo": 100,
+    "descripcion": "Espectáculo de ilusionismo y trucos de magia para toda la familia",
+    "horarios": [
+      {
+        "inicio": "2025-05-01T13:00:00",
+        "fin": "2025-05-01T14:30:00"
+      },
+      {
+        "inicio": "2025-05-01T18:00:00",
+        "fin": "2025-05-01T19:30:00"
+      }
+    ],
+    "climaNoPermitido": []
+  },
+  {
+    "tipo": "Espectaculo",
+    "id": "E2",
+    "nombre": "Desfile de Personajes",
+    "ubicacion": "Calle Principal",
+    "cupoMaximo": 500,
+    "descripcion": "Desfile con los personajes más queridos del parque",
+    "horarios": [
+      {
+        "inicio": "2025-05-01T16:00:00",
+        "fin": "2025-05-01T17:00:00"
+      }
+    ],
+    "climaNoPermitido": [
+      "LLUVIA",
+      "TORMENTA"
+    ],
+    "fechaInicioTemporada": "2025-06-01T00:00:00",
+    "fechaFinTemporada": "2025-08-31T23:59:59"
+  },
+  {
+    "tipo": "Espectaculo",
+    "id": "E3",
+    "nombre": "Fuegos Artificiales",
+    "ubicacion": "Laguna Central",
+    "cupoMaximo": 1000,
+    "descripcion": "Espectáculo nocturno de fuegos artificiales sincronizados con música",
+    "horarios": [
+      {
+        "inicio": "2025-05-01T21:00:00",
+        "fin": "2025-05-01T21:30:00"
+      }
+    ],
+    "climaNoPermitido": [
+      "LLUVIA",
+      "TORMENTA",
+      "VIENTO_FUERTE"
+    ]
+  }
+]

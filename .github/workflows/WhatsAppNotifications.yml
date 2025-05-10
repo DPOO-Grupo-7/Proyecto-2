@@ -1,0 +1,194 @@
+name: WhatsApp Notifications with Chart Generation
+
+# Se activa en eventos push a la rama "main" y manualmente vía workflow_dispatch
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Permisos extendidos para poder escribir en el repositorio
+permissions:
+  contents: write
+
+jobs:
+  generate-and-notify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        number:
+          - "+573508657777"
+          - "+573153896121"
+
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Esto garantiza que tengamos todo el historial para generar estadísticas precisas
+
+      - name: Get Commit Data
+        run: |
+          git log --pretty=format:"%an" | sort | uniq -c | sort -nr > commit_data.txt
+          # Verificar si el archivo se generó correctamente
+          if [ -s commit_data.txt ]; then
+            echo "Datos de commits generados:"
+            cat commit_data.txt
+          else
+            echo "No se encontraron commits o hubo un error. Creando archivo de ejemplo."
+            echo "1 Usuario de Ejemplo" > commit_data.txt
+          fi
+
+      - name: Generate WhatsApp-Friendly Chart
+        run: |
+          python3 - << 'EOF'
+          import re
+          import os
+
+          # Verificar que el archivo existe
+          if not os.path.exists('commit_data.txt') or os.path.getsize('commit_data.txt') == 0:
+              print("Archivo commit_data.txt no encontrado o vacío. Creando datos de ejemplo.")
+              with open('commit_data.txt', 'w') as f:
+                  f.write("1 Usuario de Ejemplo\n")
+
+          data = {}
+          with open('commit_data.txt', 'r') as f:
+              for line in f:
+                  parts = re.split(r'\s+', line.strip(), maxsplit=1)
+                  if len(parts) == 2:
+                      count, author = parts
+                      try:
+                          count_int = int(count)
+                      except ValueError:
+                          count_int = 0
+                      data[author] = count_int
+
+          # Crear una versión de texto del gráfico para contribuciones
+          chart_text = "🔢 *Contribuciones por Autor* 🔢\n\n"
+          
+          sorted_data = sorted(data.items(), key=lambda x: x[1], reverse=True)
+          
+          # Determinar el máximo para escalar las barras
+          max_count = max(data.values()) if data else 1
+          
+          # Crear gráfico amigable para WhatsApp usando emojis
+          for author, count in sorted_data:
+              # Escalar a un máximo de 10 emojis
+              scaled_count = round((count / max_count) * 10)
+              scaled_count = max(scaled_count, 1)  # Mínimo 1 emoji
+              
+              # Usar emoji de barra azul
+              bar = "🟦" * scaled_count
+              
+              # Agregar la línea al texto del gráfico
+              chart_text += f"*{author}*: {bar} ({count} commits)\n\n"
+          
+          # Guardar versión de texto para el repositorio
+          with open('contribution_chart.txt', 'w') as f:
+              f.write(chart_text)
+          
+          # Crear versión para WhatsApp
+          whatsapp_text = chart_text
+          with open('whatsapp_chart.txt', 'w') as f:
+              f.write(whatsapp_text)
+              
+          print("Gráfico WhatsApp-Friendly generado")
+          print(whatsapp_text)
+          EOF
+          
+          echo "Gráfico generado:"
+          cat whatsapp_chart.txt
+
+      # Mantener la generación de imagen para el repositorio
+      - name: Install dependencies for image generation
+        run: |
+          pip install pillow
+
+      - name: Generate Chart as Image for Repository
+        run: |
+          python3 - << 'EOF'
+          import re
+          import os
+          from PIL import Image, ImageDraw, ImageFont
+
+          # Verificar que el archivo existe
+          if not os.path.exists('commit_data.txt') or os.path.getsize('commit_data.txt') == 0:
+              print("Archivo commit_data.txt no encontrado o vacío. Creando datos de ejemplo.")
+              with open('commit_data.txt', 'w') as f:
+                  f.write("1 Usuario de Ejemplo\n")
+
+          data = {}
+          with open('commit_data.txt', 'r') as f:
+              for line in f:
+                  parts = re.split(r'\s+', line.strip(), maxsplit=1)
+                  if len(parts) == 2:
+                      count, author = parts
+                      try:
+                          count_int = int(count)
+                      except ValueError:
+                          count_int = 0
+                      data[author] = count_int
+
+          # Crear imagen del gráfico (solo para el repositorio)
+          width = 800
+          line_height = 30
+          padding = 20
+          sorted_data = sorted(data.items(), key=lambda x: x[1], reverse=True)
+          height = (len(sorted_data) + 2) * line_height + padding * 2
+          
+          img = Image.new('RGB', (width, height), color=(255, 255, 255))
+          d = ImageDraw.Draw(img)
+          
+          try:
+              font = ImageFont.truetype("DejaVuSansMono.ttf", 16)
+          except IOError:
+              font = ImageFont.load_default()
+          
+          d.text((padding, padding), "Contribuciones por Autor", fill=(0, 0, 0), font=font)
+          d.text((padding, padding + line_height), "-------------------------", fill=(0, 0, 0), font=font)
+          
+          y = padding + line_height * 2
+          max_count = max(data.values()) if data else 0
+          bar_max_width = width - 350
+          
+          for author, count in sorted_data:
+              d.text((padding, y), f"{author[:20]:<20}", fill=(0, 0, 0), font=font)
+              
+              bar_width = int((count / max_count) * bar_max_width) if max_count > 0 else 0
+              bar_width = max(bar_width, 10)
+              d.text((padding + 200, y), "|", fill=(0, 0, 0), font=font)
+              d.rectangle([(padding + 220, y), (padding + 220 + bar_width, y + line_height - 5)], 
+                          fill=(30, 144, 255))
+                          
+              d.text((padding + 230 + bar_width, y), f"({count})", fill=(0, 0, 0), font=font)
+              
+              y += line_height
+          
+          img.save('contribution_chart.png')
+          EOF
+
+      - name: Commit and Push Chart Files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add contribution_chart.txt contribution_chart.png whatsapp_chart.txt
+          git diff-index --quiet HEAD || git commit -m "Agregar gráfico de contribuciones" || true
+          git push || echo "No hay cambios para enviar o se produjo un error"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send WhatsApp Notification with Emoji Chart
+        run: |
+          echo "Enviando notificación de WhatsApp a ${{ matrix.number }}"
+          
+          # Leer el contenido del gráfico amigable para WhatsApp
+          CHART_CONTENT=$(cat whatsapp_chart.txt)
+          
+          # Enviar mensaje con el gráfico de emoji
+          curl -X POST "https://api.twilio.com/2010-04-01/Accounts/${{ secrets.account_sid }}/Messages.json" \
+            --data-urlencode "To=whatsapp:${{ matrix.number }}" \
+            --data-urlencode "From=whatsapp:+14155238886" \
+            --data-urlencode "Body=${CHART_CONTENT}" \
+            -u "${{ secrets.account_sid }}:${{ secrets.auth_token }}" || echo "Error al enviar mensaje de WhatsApp"
+        env:
+          account_sid: ${{ secrets.account_sid }}
+          auth_token: ${{ secrets.auth_token }}

@@ -1,0 +1,496 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam ClassBorderColor #2F4858
+skinparam ClassBackgroundColor #F6F8FF
+skinparam defaultTextAlignment center
+
+skinparam class {
+    BackgroundColor<<Abstract>> #E9ECF5
+    BorderColor<<Abstract>> #7D8BA1
+    FontStyle<<Abstract>> italic
+}
+skinparam interface {
+    BackgroundColor #FDFDFD
+    BorderColor #AAAAAA
+    FontStyle italic
+}
+
+left to right direction
+
+package dominio.usuario {
+  abstract class Usuario<<Abstract>> {
+    # identificacion: String
+    # nombre: String
+    # email: String
+    # telefono: String
+    - username: String
+    - password: String
+    + Usuario(String, String, String, String, String, String)
+    + getIdentificacion(): String
+    + getNombre(): String
+    + getEmail(): String
+    + getTelefono(): String
+    + getUsername(): String
+    + verificarPassword(String): boolean
+    # validarCredenciales(String): boolean
+    # cambiarPassword(String, String): void
+  }
+
+  class Cliente extends Usuario {
+    - fechaNacimiento: LocalDate
+    - altura: double
+    - peso: double
+    - condicionesMedicas: List<String>
+    - tiquetesComprados: List<Tiquete>
+    + Cliente(String, String, String, String, String, String, LocalDate, double, double)
+    + getFechaNacimiento(): LocalDate
+    + getAltura(): double
+    + getPeso(): double
+    + getCondicionesMedicas(): List<String>
+    + agregarCondicionMedica(String): void
+    + getTiquetesComprados(): List<Tiquete>
+    + agregarTiquete(Tiquete): void
+    + getEdad(): int
+    + cumpleRestriccionesAtraccion(double, double, double, double, List<String>): boolean
+  }
+}
+
+package dominio.empleado {
+  abstract class Empleado<<Abstract>> extends dominio.usuario.Usuario {
+    - capacitaciones: Set<Capacitacion>
+    + Empleado(String, String, String, String, String, String)
+    + getCapacitaciones(): Set<Capacitacion>
+    + agregarCapacitacion(Capacitacion): void
+    + tieneCapacitacion(Capacitacion): boolean
+    + cumpleCapacitaciones(Set<Capacitacion>): boolean
+  }
+
+  enum Capacitacion {
+    OPERACION_ATRACCION_RIESGO_MEDIO
+    OPERACION_ATRACCION_RIESGO_ALTO
+    CERTIFICADO_SEGURIDAD_ATRACCIONES
+    PRIMEROS_AUXILIOS
+    ATENCION_CLIENTE_GENERAL
+    MANIPULACION_ALIMENTOS_BASICO
+    MANIPULACION_ALIMENTOS_AVANZADO
+    MANEJO_CAJA
+    MONTAÑA_RUSA_A1
+    BARCO_PIRATA_B1
+    --
+    + getDescripcion(): String
+  }
+
+  class Administrador extends Empleado {
+    - areasResponsabilidad: List<String>
+    + Administrador(String, String, String, String, String, String, List<String>)
+    + getAreasResponsabilidad(): List<String>
+    + actualizarInformacionAtraccion(Atraccion): void
+    + asignarTurnoEmpleado(AsignacionTurno): void
+    + cambiarEstadoAtraccion(Atraccion, boolean): void
+    + autorizarCapacitacionEmpleado(Empleado, Capacitacion): void
+  }
+
+  class Cajero extends Empleado {
+    - cajaAsignada: int
+    - puntoVenta: String
+    + Cajero(String, String, String, String, String, String, int, String)
+    + getCajaAsignada(): int
+    + getPuntoVenta(): String
+    + setPuntoVenta(String): void
+    + calcularDescuentoEmpleado(Usuario): double
+    + registrarVenta(Tiquete, Usuario): void
+  }
+
+  class Cocinero extends Empleado {
+    - especialidad: String
+    + Cocinero(String, String, String, String, String, String, String)
+    + getEspecialidad(): String
+  }
+
+  class OperarioAtraccion extends Empleado {
+    - certificadoSeguridad: boolean
+    - atraccionesHabilitadas: List<String>
+    - disponible: boolean
+    + OperarioAtraccion(String, String, String, String, String, String, boolean, List<String>)
+    + habilitarParaRiesgoMedio(): void
+    + habilitarParaRiesgoAlto(): void
+    + habilitarParaAtraccionEspecifica(Capacitacion): void
+    + isDisponible(): boolean
+    + setDisponible(boolean): void
+    + puedeOperarAtraccionAltoRiesgo(): boolean
+    + puedeOperarAtraccionRiesgoMedio(): boolean
+    + tieneCertificadoSeguridad(): boolean
+    + getAtraccionesHabilitadas(): List<String>
+  }
+
+  class ServicioGeneral extends Empleado {
+    + ServicioGeneral(String, String, String, String, String, String)
+  }
+
+  Empleado "1" o-- "0..*" Capacitacion : capacitaciones
+  Administrador ..> Capacitacion : autorizacion
+  Administrador ..> Empleado : gestion
+  Cajero ..> dominio.usuario.Usuario : aplicacionDescuento
+}
+
+package dominio.elementoparque {
+  abstract class ElementoParque<<Abstract>> {
+    - id: String
+    - nombre: String
+    - cupoMaximo: int
+    - esDeTemporada: boolean
+    - fechaInicioTemporada: LocalDateTime
+    - fechaFinTemporada: LocalDateTime
+    # climaNoPermitido: List<CondicionClimatica>
+    # ElementoParque(String, String, int)
+    + getId(): String
+    + getNombre(): String
+    + getCupoMaximo(): int
+    + isEsDeTemporada(): boolean
+    + setTemporada(LocalDateTime, LocalDateTime): void
+    + getFechaInicioTemporada(): LocalDateTime
+    + getFechaFinTemporada(): LocalDateTime
+    + getClimaNoPermitido(): List<CondicionClimatica>
+    + setClimaNoPermitido(List<CondicionClimatica>): void
+    + puedeOperarEnClima(CondicionClimatica): boolean
+    + estaDisponibleEnFecha(LocalDateTime): boolean
+  }
+
+  abstract class Atraccion<<Abstract>> extends ElementoParque implements dominio.trabajo.LugarTrabajo {
+    - ubicacion: String
+    - empleadosMinimos: int
+    - empleadosAsignados: List<dominio.empleado.Empleado>
+    - nivelExclusividad: NivelExclusividad
+    - capacitacionesRequeridas: Set<dominio.empleado.Capacitacion>
+    + Atraccion(String, String, String, int, int)
+    + getUbicacion(): String
+    + getEmpleadosMinimos(): int
+    + getEmpleadosAsignados(): List<dominio.empleado.Empleado>
+    + getNivelExclusividad(): NivelExclusividad
+    + setNivelExclusividad(NivelExclusividad): void
+    + getCapacitacionesRequeridas(): Set<dominio.empleado.Capacitacion>
+    # setCapacitacionesRequeridas(Set<dominio.empleado.Capacitacion>): void
+    + {abstract} puedeAsignarEmpleado(dominio.empleado.Empleado): boolean
+    + asignarEmpleado(dominio.empleado.Empleado): void
+    + cumpleRequisitosPersonal(): boolean
+    + getNombreLugar(): String
+    + getId(): String
+  }
+
+  class AtraccionCultural extends Atraccion {
+    - edadMinima: int
+    + AtraccionCultural(String, String, String, int, int, int, List<dominio.util.CondicionClimatica>)
+    + getEdadMinima(): int
+    + puedeAsignarEmpleado(dominio.empleado.Empleado): boolean
+    + permiteAccesoPorEdad(int): boolean
+    + asignarEmpleado(dominio.empleado.Empleado): void
+  }
+
+  class AtraccionMecanica extends Atraccion {
+    - nivelRiesgo: NivelRiesgo
+    - restriccionAlturaMinima: double
+    - restriccionAlturaMaxima: double
+    - restriccionPesoMinimo: double
+    - restriccionPesoMaximo: double
+    - contraindicacionesSalud: List<String>
+    - restriccionesSalud: List<String>
+    - capacitacionEspecifica: dominio.empleado.Capacitacion
+    + AtraccionMecanica(String, String, String, int, int, NivelExclusividad, NivelRiesgo, double, double, double, double, List<String>, List<String>, List<dominio.util.CondicionClimatica>, dominio.empleado.Capacitacion)
+    + getNivelRiesgo(): NivelRiesgo
+    + getRestriccionAlturaMinima(): double
+    + setRestriccionAlturaMinima(double): void
+    + getRestriccionAlturaMaxima(): double
+    + setRestriccionAlturaMaxima(double): void
+    + getRestriccionPesoMinimo(): double
+    + setRestriccionPesoMinimo(double): void
+    + getRestriccionPesoMaximo(): double
+    + setRestriccionPesoMaximo(double): void
+    + getContraindicacionesSalud(): List<String>
+    + setContraindicacionesSalud(List<String>): void
+    + getRestriccionesSalud(): List<String>
+    + setRestriccionesSalud(List<String>): void
+    + getCapacitacionEspecifica(): dominio.empleado.Capacitacion
+    + puedeAsignarEmpleado(dominio.empleado.Empleado): boolean
+  }
+
+  class Espectaculo extends ElementoParque {
+    - descripcion: String
+    - horarios: List<dominio.util.RangoFechaHora>
+    - ubicacion: String
+    + Espectaculo(String, String, String, String, List<dominio.util.RangoFechaHora>, List<dominio.util.CondicionClimatica>)
+    + getDescripcion(): String
+    + getHorarios(): List<dominio.util.RangoFechaHora>
+    + setHorarios(List<dominio.util.RangoFechaHora>): void
+    + getUbicacion(): String
+    + setUbicacion(String): void
+  }
+
+
+  enum NivelExclusividad {
+    FAMILIAR
+    ORO
+    DIAMANTE
+    --
+    + getDescripcion(): String
+    + permiteAccesoConCategoria(dominio.tiquete.CategoriaTiquete): boolean
+  }
+
+  enum NivelRiesgo {
+    MEDIO
+    ALTO
+    --
+    + getDescripcion(): String
+  }
+
+  ElementoParque "1" o-- "0..*" dominio.util.CondicionClimatica : climaNoPermitido
+  Atraccion "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Atraccion "1" -- "1" NivelExclusividad : nivelExclusividad
+  Atraccion "1" o-- "0..*" dominio.empleado.Capacitacion : capacitacionesRequeridas
+  AtraccionMecanica "1" -- "1" NivelRiesgo : nivelRiesgo
+  Espectaculo "1" o-- "1..*" dominio.util.RangoFechaHora : horarios
+  NivelExclusividad ..> dominio.tiquete.CategoriaTiquete : validacionAcceso
+  dominio.empleado.Administrador ..> Atraccion : gestion
+}
+
+package dominio.tiquete {
+  abstract class Tiquete<<Abstract>> {
+    - codigo: String
+    - fechaHoraEmision: LocalDateTime
+    - precio: double
+    - utilizado: boolean
+    - identificacionComprador: String
+    - nombreComprador: String
+    - descuentoEmpleado: boolean
+    + Tiquete(String, LocalDateTime, double, String, String, boolean)
+    + getCodigo(): String
+    + getFechaHoraEmision(): LocalDateTime
+    + getPrecio(): double
+    + isUtilizado(): boolean
+    + getIdentificacionComprador(): String
+    + getNombreComprador(): String
+    + tieneDescuentoEmpleado(): boolean
+    + marcarComoUtilizado(): void
+    + calcularPrecioFinal(): double
+    + {abstract} esValidoParaFecha(LocalDateTime): boolean
+  }
+
+  enum CategoriaTiquete {
+    BASICO
+    FAMILIAR
+    ORO
+    DIAMANTE
+    --
+    + getDescripcion(): String
+  }
+
+  class EntradaIndividual extends Tiquete {
+    - atraccionAsociada: dominio.elementoparque.Atraccion
+    - codigoUnico: String
+    + EntradaIndividual(String, LocalDateTime, double, String, String, boolean, dominio.elementoparque.Atraccion)
+    + getAtraccionAsociada(): dominio.elementoparque.Atraccion
+    + esValidoParaFecha(LocalDateTime): boolean
+    + getCodigoUnico(): String
+    + setCodigoUnico(String): void
+    + esValidoParaAtraccion(dominio.elementoparque.Atraccion): boolean
+  }
+
+  class TiqueteGeneral extends Tiquete {
+    - categoria: CategoriaTiquete
+    - fechaActivacion: LocalDateTime
+    + TiqueteGeneral(String, LocalDateTime, double, String, String, boolean, CategoriaTiquete)
+    + getCategoria(): CategoriaTiquete
+    + getFechaActivacion(): LocalDateTime
+    + esValidoParaFecha(LocalDateTime): boolean
+    + marcarComoUtilizado(): void
+  }
+
+  class TiqueteTemporada extends Tiquete {
+    - categoria: CategoriaTiquete
+    - fechaInicio: LocalDateTime
+    - fechaFin: LocalDateTime
+    - utilizado: boolean
+    + TiqueteTemporada(String, LocalDateTime, double, String, String, boolean, CategoriaTiquete, LocalDateTime, LocalDateTime)
+    + getCategoria(): CategoriaTiquete
+    + getFechaInicio(): LocalDateTime
+    + getFechaFin(): LocalDateTime
+    + esValidoParaFecha(LocalDateTime): boolean
+    + marcarComoUtilizado(): void
+    + isUtilizado(): boolean
+  }
+
+  class FastPass extends Tiquete {
+    - fechaValida: LocalDateTime
+    + FastPass(String, LocalDateTime, LocalDateTime, double, String, String, boolean)
+    + esValidoParaFecha(LocalDateTime): boolean
+    + getFechaValida(): LocalDateTime
+  }
+
+  EntradaIndividual "1" -- "1" dominio.elementoparque.Atraccion : atraccionAsociada
+  TiqueteGeneral "1" -- "1" CategoriaTiquete : categoria
+  TiqueteTemporada "1" -- "1" CategoriaTiquete : categoria
+  dominio.usuario.Cliente "1" o-- "0..*" Tiquete : tiquetesComprados
+  dominio.empleado.Cajero ..> Tiquete : registroVenta
+}
+
+package dominio.trabajo {
+  interface LugarTrabajo<<Interface>> {
+    + {abstract} getNombreLugar(): String
+    + {abstract} asignarEmpleado(dominio.empleado.Empleado): void
+    + {abstract} cumpleRequisitosPersonal(): boolean
+    + {abstract} puedeAsignarEmpleado(dominio.empleado.Empleado): boolean
+    + {abstract} getCapacitacionesRequeridas(): Set<dominio.empleado.Capacitacion>
+  }
+
+  class AsignacionTurno {
+    - id: String
+    - empleado: dominio.empleado.Empleado
+    - lugarTrabajo: LugarTrabajo
+    - fecha: LocalDate
+    - turno: Turno
+    + AsignacionTurno(dominio.empleado.Empleado, LugarTrabajo, LocalDate, Turno)
+    + getId(): String
+    + getEmpleado(): dominio.empleado.Empleado
+    + getLugarTrabajo(): LugarTrabajo
+    + getFecha(): LocalDate
+    + getTurno(): Turno
+    + {static} generarIdUnico(): String
+  }
+
+  class Cafeteria implements LugarTrabajo {
+    - nombre: String
+    - empleadosRequeridos: int
+    - empleadosAsignados: List<dominio.empleado.Empleado>
+    + Cafeteria(String, int)
+    + getNombreLugar(): String
+    + asignarEmpleado(dominio.empleado.Empleado): void
+    + cumpleRequisitosPersonal(): boolean
+    + getCapacitacionesRequeridas(): Set<dominio.empleado.Capacitacion>
+    + getEmpleadosAsignados(): List<dominio.empleado.Empleado>
+    + getEmpleadosRequeridos(): int
+    + getCajerosAsignados(): List<dominio.empleado.Cajero>
+    + getCocinerosAsignados(): List<dominio.empleado.Cocinero>
+  }
+
+  class Taquilla implements LugarTrabajo {
+    - nombre: String
+    - empleadosRequeridos: int
+    - empleadosAsignados: List<dominio.empleado.Empleado>
+    + Taquilla(String, int)
+    + getNombreLugar(): String
+    + asignarEmpleado(dominio.empleado.Empleado): void
+    + cumpleRequisitosPersonal(): boolean
+    + getCapacitacionesRequeridas(): Set<dominio.empleado.Capacitacion>
+    + getEmpleadosAsignados(): List<dominio.empleado.Empleado>
+    + getEmpleadosRequeridos(): int
+    + removerEmpleado(dominio.empleado.Empleado): boolean
+  }
+
+  class Tienda implements LugarTrabajo {
+    - nombre: String
+    - maximoEmpleados: int
+    - empleadosAsignados: List<dominio.empleado.Empleado>
+    - capacitacionesRequeridas: Set<dominio.empleado.Capacitacion>
+    + Tienda(String, int)
+    + getNombreLugar(): String
+    + asignarEmpleado(dominio.empleado.Empleado): void
+    + cumpleRequisitosPersonal(): boolean
+    + getCapacitacionesRequeridas(): Set<dominio.empleado.Capacitacion>
+    + getEmpleadosAsignados(): List<dominio.empleado.Empleado>
+  }
+
+  enum Turno {
+    APERTURA
+    CIERRE
+    --
+    + getDescripcion(): String
+    + getHoraInicio(): String
+    + getHoraFin(): String
+  }
+
+  AsignacionTurno "1" -- "1" dominio.empleado.Empleado : empleado
+  AsignacionTurno "1" -- "1" LugarTrabajo : lugarTrabajo
+  AsignacionTurno "1" -- "1" Turno : turno
+  Cafeteria "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Taquilla "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Tienda "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Tienda "1" o-- "0..*" dominio.empleado.Capacitacion : capacitacionesRequeridas
+  LugarTrabajo ..> dominio.empleado.Empleado : asignacion
+  LugarTrabajo ..> dominio.empleado.Capacitacion : requerimientoCapacitacion
+  dominio.empleado.Administrador ..> AsignacionTurno : asignacion
+}
+
+package dominio.util {
+  enum CondicionClimatica {
+    TORMENTA
+    LLUVIA_FUERTE
+    FRIO_EXTREMO
+    CALOR_EXTREMO
+    VIENTO_FUERTE
+    NORMAL
+    --
+    + getDescripcion(): String
+  }
+
+  class RangoFechaHora {
+    - inicio: LocalDateTime
+    - fin: LocalDateTime
+    + RangoFechaHora(LocalDateTime, LocalDateTime)
+    + getInicio(): LocalDateTime
+    + getFin(): LocalDateTime
+    + incluyeFecha(LocalDateTime): boolean
+    + seSuperponeCon(RangoFechaHora): boolean
+  }
+}
+
+package dominio.excepciones {
+  class AsignacionInvalidaException extends RuntimeException {
+    + AsignacionInvalidaException(String)
+  }
+
+  class AtraccionNoEncontradaException extends RuntimeException {
+    + AtraccionNoEncontradaException(String)
+    + AtraccionNoEncontradaException(String, Throwable)
+  }
+
+  class AtraccionNoOperativaException extends RuntimeException {
+    - motivo: MotivoNoOperativa 
+    - nombreAtraccion: String 
+    + AtraccionNoOperativaException(MotivoNoOperativa, String)
+    + AtraccionNoOperativaException(MotivoNoOperativa)
+    + getMotivo(): MotivoNoOperativa
+    + getNombreAtraccion(): String
+  }
+
+  enum MotivoNoOperativa {
+      CLIMA_INVALIDO
+      FALTA_PERSONAL
+      --
+      + getDescripcion(): String
+  }
+
+  class CapacitacionInsuficienteException extends AsignacionInvalidaException {
+    + CapacitacionInsuficienteException(dominio.empleado.Empleado, dominio.trabajo.LugarTrabajo)
+    + CapacitacionInsuficienteException(String)
+  }
+
+  class DatosInvalidosException extends RuntimeException {
+    + DatosInvalidosException(String)
+  }
+
+  class EmpleadoNoEncontradoException extends RuntimeException {
+    + EmpleadoNoEncontradoException(String)
+  }
+
+  class TiqueteInvalidoException extends RuntimeException {
+    + TiqueteInvalidoException(String)
+  }
+
+  class TiqueteYaUtilizadoException extends IllegalStateException {
+    + TiqueteYaUtilizadoException(String)
+  }
+}
+@enduml

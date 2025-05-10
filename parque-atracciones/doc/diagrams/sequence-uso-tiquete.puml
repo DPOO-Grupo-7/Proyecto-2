@@ -1,0 +1,20 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+actor Usuario
+participant "ConsolaParque\n(Vista)" as Vista
+participant "ServicioVentaTiquetes\n(Aplicación)" as Servicio
+participant "Tiquete\n(Dominio)" as Tiquete
+
+== Registro de uso de tiquete ==
+Usuario -> Vista: Presenta tiquete para uso
+Vista -> Servicio: registrarUsoTiquete(tiquete)
+Servicio -> Tiquete: marcarComoUtilizado()
+Tiquete --> Servicio: Estado actualizado
+Servicio --> Vista: Confirmación de uso
+Vista -> Usuario: Muestra confirmación
+@enduml

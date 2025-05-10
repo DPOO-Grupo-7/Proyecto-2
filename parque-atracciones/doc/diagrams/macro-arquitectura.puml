@@ -1,0 +1,28 @@
+@startuml
+' Macro-diagrama de capas del sistema
+package "Interfaz de Usuario" as UI {
+  [ConsolaParque <<boundary>>]
+}
+package "Aplicación" as APP {
+  [ServicioVentaTiquetes <<control>>]
+  [ServicioGestionEmpleados <<control>>]
+  [ServicioGestionElementosParque <<control>>]
+}
+package "Dominio" as DOM {
+  [Tiquete <<entity>>]
+  [Empleado <<entity>>]
+  [Atraccion <<entity>>]
+  [Espectaculo <<entity>>]
+}
+package "Infraestructura" as INFRA {
+  [RepositorioTiquetes <<infrastructure>>]
+  [RepositorioEmpleados <<infrastructure>>]
+  [RepositorioElementosParque <<infrastructure>>]
+  [JSONMapper <<infrastructure>>]
+}
+
+UI --> APP : Solicita operaciones
+APP --> DOM : Invoca lógica de dominio
+APP --> INFRA : Persiste/recupera datos
+INFRA ..> DOM : Mapea entidades
+@enduml

@@ -1,0 +1,32 @@
+[
+  {
+    "descripcion": "Espectáculo de ilusionismo y trucos de magia para toda la familia",
+    "horarios": [
+      {
+        "inicio": "2025-05-01T13:00:00",
+        "fin": "2025-05-01T14:30:00"
+      }
+    ],
+    "ubicacion": "Auditorio Principal",
+    "id": "E1",
+    "nombre": "Show de Magia",
+    "cupoMaximo": 100,
+    "esDeTemporada": false,
+    "climaNoPermitido": []
+  },
+  {
+    "descripcion": "Show de luces y sonido",
+    "horarios": [
+      {
+        "inicio": "2025-07-15T20:00:00",
+        "fin": "2025-07-15T21:00:00"
+      }
+    ],
+    "ubicacion": "Teatro Principal",
+    "id": "ESPEC01",
+    "nombre": "Show Nocturno Test",
+    "cupoMaximo": 200,
+    "esDeTemporada": false,
+    "climaNoPermitido": []
+  }
+]

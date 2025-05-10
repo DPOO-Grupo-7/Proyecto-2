@@ -1,0 +1,21 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam defaultTextAlignment center
+package dominio.excepciones {
+  class RuntimeException
+  class IllegalStateException
+  class AsignacionInvalidaException extends RuntimeException
+  class AtraccionNoEncontradaException extends RuntimeException
+  class AtraccionNoOperativaException extends RuntimeException
+  class CapacitacionInsuficienteException extends AsignacionInvalidaException
+  class DatosInvalidosException extends RuntimeException
+  class EmpleadoNoEncontradoException extends RuntimeException
+  class TiqueteInvalidoException extends RuntimeException
+  class TiqueteYaUtilizadoException extends IllegalStateException
+  enum MotivoNoOperativa
+}
+@enduml

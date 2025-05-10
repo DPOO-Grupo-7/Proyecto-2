@@ -1,0 +1,111 @@
+@startuml
+skinparam backgroundColor #FEFEFE
+skinparam linetype polyline
+skinparam shadowing false
+skinparam roundcorner 15
+skinparam ArrowColor #33658A
+skinparam ClassBorderColor #2F4858
+skinparam ClassBackgroundColor #F6F8FF
+skinparam defaultTextAlignment center
+
+skinparam class {
+    BackgroundColor<<Abstract>> #E9ECF5
+    BorderColor<<Abstract>> #7D8BA1
+    FontStyle<<Abstract>> italic
+}
+skinparam interface {
+    BackgroundColor #FDFDFD
+    BorderColor #AAAAAA
+    FontStyle italic
+}
+
+left to right direction
+
+' Diagrama de alto nivel: solo clases y relaciones principales
+package dominio.usuario {
+  abstract class Usuario<<Abstract>>
+  class Cliente extends Usuario
+}
+
+package dominio.empleado {
+  abstract class Empleado<<Abstract>> extends dominio.usuario.Usuario
+  enum Capacitacion
+  class Administrador extends Empleado
+  class Cajero extends Empleado
+  class Cocinero extends Empleado
+  class OperarioAtraccion extends Empleado
+  class ServicioGeneral extends Empleado
+  Empleado "1" o-- "0..*" Capacitacion : capacitaciones
+  Administrador ..> Capacitacion : autorizacion
+  Administrador ..> Empleado : gestion
+  Cajero ..> dominio.usuario.Usuario : aplicacionDescuento
+}
+
+package dominio.elementoparque {
+  abstract class ElementoParque<<Abstract>>
+  abstract class Atraccion<<Abstract>> extends ElementoParque implements dominio.trabajo.LugarTrabajo
+  class AtraccionCultural extends Atraccion
+  class AtraccionMecanica extends Atraccion
+  class Espectaculo extends ElementoParque
+  enum NivelExclusividad
+  enum NivelRiesgo
+  ElementoParque "1" o-- "0..*" dominio.util.CondicionClimatica : climaNoPermitido
+  Atraccion "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Atraccion "1" -- "1" NivelExclusividad : nivelExclusividad
+  Atraccion "1" o-- "0..*" dominio.empleado.Capacitacion : capacitacionesRequeridas
+  AtraccionMecanica "1" -- "1" NivelRiesgo : nivelRiesgo
+  Espectaculo "1" o-- "1..*" dominio.util.RangoFechaHora : horarios
+  NivelExclusividad ..> dominio.tiquete.CategoriaTiquete : validacionAcceso
+  dominio.empleado.Administrador ..> Atraccion : gestion
+}
+
+package dominio.tiquete {
+  abstract class Tiquete<<Abstract>>
+  enum CategoriaTiquete
+  class EntradaIndividual extends Tiquete
+  class TiqueteGeneral extends Tiquete
+  class TiqueteTemporada extends Tiquete
+  class FastPass extends Tiquete
+  EntradaIndividual "1" -- "1" dominio.elementoparque.Atraccion : atraccionAsociada
+  TiqueteGeneral "1" -- "1" CategoriaTiquete : categoria
+  TiqueteTemporada "1" -- "1" CategoriaTiquete : categoria
+  dominio.usuario.Cliente "1" o-- "0..*" Tiquete : tiquetesComprados
+  dominio.empleado.Cajero ..> Tiquete : registroVenta
+}
+
+package dominio.trabajo {
+  interface LugarTrabajo<<Interface>>
+  class AsignacionTurno
+  class Cafeteria implements LugarTrabajo
+  class Taquilla implements LugarTrabajo
+  class Tienda implements LugarTrabajo
+  enum Turno
+  AsignacionTurno "1" -- "1" dominio.empleado.Empleado : empleado
+  AsignacionTurno "1" -- "1" LugarTrabajo : lugarTrabajo
+  AsignacionTurno "1" -- "1" Turno : turno
+  Cafeteria "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Taquilla "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Tienda "1" o-- "0..*" dominio.empleado.Empleado : empleadosAsignados
+  Tienda "1" o-- "0..*" dominio.empleado.Capacitacion : capacitacionesRequeridas
+  LugarTrabajo ..> dominio.empleado.Empleado : asignacion
+  LugarTrabajo ..> dominio.empleado.Capacitacion : requerimientoCapacitacion
+  dominio.empleado.Administrador ..> AsignacionTurno : asignacion
+}
+
+package dominio.util {
+  enum CondicionClimatica
+  class RangoFechaHora
+}
+
+package dominio.excepciones {
+  class AsignacionInvalidaException extends RuntimeException
+  class AtraccionNoEncontradaException extends RuntimeException
+  class AtraccionNoOperativaException extends RuntimeException
+  enum MotivoNoOperativa
+  class CapacitacionInsuficienteException extends AsignacionInvalidaException
+  class DatosInvalidosException extends RuntimeException
+  class EmpleadoNoEncontradoException extends RuntimeException
+  class TiqueteInvalidoException extends RuntimeException
+  class TiqueteYaUtilizadoException extends IllegalStateException
+}
+@enduml
